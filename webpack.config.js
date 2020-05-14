@@ -25,6 +25,7 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',  //for error handling is very important
 
     devServer: {
-        contentBase: path.join(__dirname, 'Public')
+        contentBase: path.join(__dirname, 'Public'),
+        historyApiFallback : true    //this is for route to same page when multiple routes are there in single page, this says to load index.html when 404 found
     }
 }
