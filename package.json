@@ -1,0 +1,33 @@
+{
+  "name": "Budget-App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "live-server": "live-server Public/",
+    "dev-server": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "author": "Alsaad Ahamed",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "~7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "css-loader": "^3.5.3",
+    "live-server": "^1.2.1",
+    "node-sass": "^4.14.1",
+    "normalize.css": "^8.0.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-modal": "^3.11.2",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
