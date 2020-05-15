@@ -1,30 +1,43 @@
 import { createStore } from 'redux'
 
-const store = createStore((state = { count: 0 },action) => {  //in store the 2nd args is action 
-    switch(action.type){
+const store = createStore((state = { count: 0 }, action) => {  //in store the 2nd args is action 
+    switch (action.type) {
         case 'INCREMENT':
-            return{
-                count : state.count + 1
+            const increment = typeof action.incrementBy === 'number' ? action.incrementBy : 1;
+            return {
+                count: state.count + increment
             }
         case 'DECREMENT':
-            return{
-                count : state.count - 1
+            const decrement = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
+            return {
+                count: state.count - decrement
+            }
+        case 'SET':
+            return {
+                count: action.count
             }
         case 'RESET':
-            return{
-                count : 0
+            return {
+                count: 0
             }
         default:
-            return state;    
+            return state;
     }
 })
 
 
-console.log(store.getState());
+const unsubscribe = store.subscribe(() => {
+    console.log(store.getState()); //When the store gets changed we are notified
+});
 
 //actions are the object that are sent to the store 
 //only through actions we can change the state in redux
 //actions are always dispatched to the store
+
+store.dispatch({
+    type: 'INCREMENT',
+    incrementBy: 5      //add dynamic objects
+});
 
 store.dispatch({
     type: 'INCREMENT'
@@ -35,11 +48,16 @@ store.dispatch({
 });
 
 store.dispatch({
-    type:'RESET'
+    type: 'RESET'
+});
+
+
+store.dispatch({
+    type: 'DECREMENT',
+    decrementBy: 4
 });
 
 store.dispatch({
-    type: 'INCREMENT'
+    type: 'SET',
+    count: 101
 });
-
-console.log(store.getState()); //here we have changed the state 
