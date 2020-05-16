@@ -37,8 +37,11 @@ const set = ({ count = 1 } = {}) => ( //by defualt to 1 if not passed any parame
     }
 );
 
-//store
-const store = createStore((state = { count: 0 }, action) => {  //in store the 2nd args is action 
+//reducer
+// 1 a reducer is a pure function means output depends opon input
+// 2 we should not change action or state directly instead we should return object
+
+const countReducer = (state = { count: 0 }, action) => {  //in store the 2nd args is action 
     switch (action.type) {
         case 'INCREMENT':
             return {
@@ -59,7 +62,10 @@ const store = createStore((state = { count: 0 }, action) => {  //in store the 2n
         default:
             return state;
     }
-})
+};
+
+//store
+const store = createStore(countReducer);
 
 
 const unsubscribe = store.subscribe(() => {
