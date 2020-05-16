@@ -28,6 +28,8 @@
     "redux": "^4.0.5",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
+    "uniqid": "^5.2.0",
+    "uuid": "^8.0.0",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.11.0"

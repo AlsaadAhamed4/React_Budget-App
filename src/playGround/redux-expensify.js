@@ -1,4 +1,6 @@
 import { createStore, combineReducers } from 'redux'
+import uuid from 'uuid';
+import uniqid from 'uniqid'
 
 //*********Actions*********** */
 //ADD_EXPENSE
@@ -11,6 +13,29 @@ import { createStore, combineReducers } from 'redux'
 //SET_END_DATE
 //*********Actions*********** */
 
+
+//actions generator for expense
+const addExpense = ({ description = '', note = '', amount = 0, createdAt = 0 } = {}) => (
+    {
+        type: 'ADD_EXPENSE',
+        expense: {
+            id: uniqid(),
+            description,
+            note,
+            amount,
+            createdAt
+        }
+    }
+);
+
+const removeExpense = ({ id } = {}) => (
+    {
+        type: 'REMOVE_EXPENSE',
+        id
+    }
+);
+
+
 //we have complex state to mentain we need two reducers
 // 1 ExpenseReducer
 // 2 filterReducer
@@ -20,11 +45,10 @@ import { createStore, combineReducers } from 'redux'
 const expensesReducerDefaultState = [];
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
-        /*  case 'ADD_EXPENSE':
-             return{
- 
-             }
-         case 'REMOVE_EXPENSE': */
+        case 'ADD_EXPENSE':
+            return [...state, action.expense];
+        case 'REMOVE_EXPENSE':
+            return state.filter(({id}) => id !== action.id)
         default: return state;
     }
 };
@@ -47,7 +71,7 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
 const store = createStore(
     combineReducers({
         expenses: expensesReducer,
-        filters : filtersReducer
+        filters: filtersReducer
     })
 );
 
@@ -55,9 +79,10 @@ const unsubscribe = store.subscribe(() => {
     console.log(store.getState());
 })
 
-store.dispatch({
-    type: 'Hello'
-});
+const expenseOne = store.dispatch(addExpense({ description: 'Test', amount: 2500, createdAt: '16-05-2020' }));
+const expenseTwo = store.dispatch(addExpense({ description: 'Test-2', amount: 500, createdAt: '16-05-2020' }));
+
+store.dispatch(removeExpense({ id: expenseTwo.expense.id }))
 
 const demoState = {
     expenses: [{
