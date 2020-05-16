@@ -1,4 +1,9 @@
+console.log(`************************************************`);
 console.log('destructuring');
+
+console.log(`************************************************`);
+console.log(`object destruturing`);
+console.log(`************************************************`);
 
 const person = {
     name: 'Alsaad',
@@ -45,3 +50,16 @@ const { name: pubName = 'self' } = book.publisher;
 console.log(`The book called ${title} was written by ${author} and published by ${pubName}`);
 
 
+//
+// Array destructuring 
+//
+
+console.log(`************************************************`);
+console.log(`Array destruturing`);
+console.log(`************************************************`);
+
+const arra = ['Alsaad','Ahamed'];
+
+const [fName,lName,Aage=23] = arra;
+
+console.log(`my first name is ${fName} and last name is ${lName} with age ${Aage}`);
