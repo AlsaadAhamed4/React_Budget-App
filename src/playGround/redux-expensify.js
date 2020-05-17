@@ -50,6 +50,32 @@ const setTextFilter = (text = "") => (
     }
 )
 
+const sortByAmount = () => (
+    {
+        type: 'SORT_BY_AMOUNT',
+    }
+);
+
+const sortByDate = () => (
+    {
+        type: 'SORT_BY_DATE',
+    }
+);
+
+const setStartDate = (sDate) => (
+    {
+        type: 'SET_START_DATE',
+        sDate
+    }
+);
+
+const setEndDate = (eDate) => (
+    {
+        type: 'SET_END_DATE',
+        eDate
+    }
+);
+
 
 //we have complex state to mentain we need two reducers
 // 1 ExpenseReducer
@@ -91,7 +117,16 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
         case 'SET_TEXT_FILTER':
             return { ...state, text: action.text };
+        case 'SORT_BY_AMOUNT':
+            return { ...state, sortBy: 'amount' };
+        case 'SORT_BY_DATE':
+            return { ...state, sortBy: 'date' };
+        case 'SET_START_DATE':
+            return { ...state, startDate: action.sDate };
+        case 'SET_END_DATE':
+            return { ...state, endDate: action.eDate };
         default: return state;
+
     }
 };
 
@@ -115,6 +150,16 @@ store.dispatch(removeExpense({ id: expenseTwo.expense.id }));
 store.dispatch(editExpense(expenseOne.expense.id, { amount: 111 }));
 
 store.dispatch(setTextFilter('rent'));
+
+store.dispatch(sortByAmount());
+
+store.dispatch(sortByDate());
+
+store.dispatch(setStartDate(125));
+
+store.dispatch(setEndDate(100));
+
+
 
 const demoState = {
     expenses: [{
