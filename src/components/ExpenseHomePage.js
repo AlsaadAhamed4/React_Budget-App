@@ -1,10 +1,11 @@
 import React from 'react';
+import ExpensesList from './ExpensesList';
 
 
 const ExpenseHomePage = () => (
     <div>
-        <p>This is expense page</p>
+        <ExpensesList />
     </div>
 );
 
-export default  ExpenseHomePage;
+export default ExpenseHomePage;
