@@ -3,7 +3,7 @@ const path = require('path'); //a node property
 console.log(path.join(__dirname, 'Public')); //__dirname gives the absolute path name for any system
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/playGround/hoc.js',
     output: {
         path: path.join(__dirname, 'Public'),
         filename: 'bundle.js'
