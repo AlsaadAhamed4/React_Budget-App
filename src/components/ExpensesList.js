@@ -19,6 +19,8 @@ const ExpensesList = (props) => (
 //connect syntax connect(function with state as args)(Name of Component to connect)
 //connect function
 //standard name used as mapStateToProps
+
+//filterExpenses accepts expense and filters based on filter it filter the expenses
 const mapStateToProps = (state) => {
     return {
         expenses: filterExpenses(state.expenses,state.filters) //this can be accessed as props in connected component in my case 'ExpenseList'
