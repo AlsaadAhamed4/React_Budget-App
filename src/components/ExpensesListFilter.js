@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {setTextFilterAction} from '../Actions/FiltersAction';
+import { setTextFilterAction, sortByAmountAction, sortByDateAction } from '../Actions/FiltersAction';
 
 
 //this component is responsible for displaying input feild with value of applied filter
@@ -10,13 +10,19 @@ import {setTextFilterAction} from '../Actions/FiltersAction';
 //here in line 15 i am able to write the state by using dispatch and a action 
 const ExpensesListFilter = (props) => (
     <div>
-    <br/>
-        <label>Filter Used is:</label><input type='text' value={props.filters.text} onChange={(e)=>{
+        <br />
+        <label>Filter Used is:</label><input type='text' value={props.filters.text} onChange={(e) => {
             props.dispatch(setTextFilterAction(e.target.value))
         }} />
+        <br />
+        <select value={props.filters.sortBy} onChange={(e) => {
+            e.target.value === 'amount' ? props.dispatch(sortByAmountAction()) : props.dispatch(sortByDateAction())
+        }}>
+            <option value='date'>Date</option>
+            <option value='amount'>Amount</option>
+        </select>
     </div>
 );
-
 
 const mapSateToProps = (state) => {
     return {
