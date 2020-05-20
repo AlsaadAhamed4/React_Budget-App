@@ -9,13 +9,19 @@ const now = moment();
 console.log(now.format('MMM - Do - YYYY'));
 
 export default class ExpenseForm extends React.Component {
-    state = {
-        description: '',
-        amount: '',
-        note: '',
-        createdAt: moment(),
-        calendarFocused: false,
-        errMsg: ''
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            description: props.editData ? props.editData.description : '',
+            amount: props.editData ? (props.editData.amount / 100).toString() : '',
+            note: props.editData ? props.editData.note : '',
+            createdAt: props.editData ? moment(props.editData.createdAt) : moment(),
+            calendarFocused: false,
+            errMsg: '',
+            buttonName :  props.editData ? 'Edit Expense' : 'Add Expense'
+        }
     }
 
     onDescriptionChange = (e) => {
@@ -77,7 +83,7 @@ export default class ExpenseForm extends React.Component {
                     <input type='text' placeholder='Amount' value={this.state.amount} onChange={this.onAmountChange} />
                     <SingleDatePicker date={this.state.createdAt} onDateChange={this.onDateChange} focused={this.state.calendarFocused} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={() => false} />
                     <textarea placeholder='Add a note for your expense (optional)' value={this.state.note} onChange={this.onNoteChange} />
-                    <button>Add Expense</button>
+                    <button>{this.state.buttonName}</button>
                 </form>
             </div>
         )
