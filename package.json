@@ -6,7 +6,9 @@
   "scripts": {
     "live-server": "live-server Public/",
     "dev-server": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "author": "Alsaad Ahamed",
   "license": "ISC",
@@ -18,6 +20,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "css-loader": "^3.5.3",
+    "jest": "^26.0.1",
     "live-server": "^1.2.1",
     "moment": "^2.26.0",
     "node-sass": "^4.14.1",
