@@ -8,6 +8,7 @@ import ExpensifyStore from './Store/ExpensifyStore';
 import { addExpenseAction, removeExpenseAction, editExpenseAction } from './Actions/ExpenseAction';
 import { sortByAmountAction, sortByDateAction, setStartDateAction, setEndDateAction, setTextFilterAction } from './Actions/FiltersAction';
 import filterExpenses from './Selectors/FilterExpenses';
+import 'react-dates/lib/css/_datepicker.css';
 
 const store = ExpensifyStore();
 
