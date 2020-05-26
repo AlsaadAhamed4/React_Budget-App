@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render expense dashboard 1`] = `
+<div>
+  <p>
+    404 Status
+  </p>
+  <[object Object]
+    to="/"
+  >
+    Go Home 
+  </[object Object]>
+</div>
+`;

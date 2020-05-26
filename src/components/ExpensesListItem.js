@@ -1,13 +1,13 @@
 import React from 'react';
 import { removeExpenseAction, editExpenseAction } from '../Actions/ExpenseAction';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const ExpensesListItem = ({ description, amount, createdAt, id, dispatch }) => (
+const ExpensesListItem = ({ description, amount, createdAt, id }) => (
     <div>
-        <NavLink to={`/edit/${id}`}><h1>{description}</h1></NavLink>
+        <Link to={`/edit/${id}`}><h1>{description}</h1></Link>
         <p>{amount}</p>
         <p>{createdAt}</p>
-    </div >
+    </div>
 );
 
 export default ExpensesListItem;
