@@ -9,31 +9,35 @@ import { DateRangePicker } from 'react-dates';
 //To set the state to specified filter we need to dispatch it store , we can do it by calling props.dispatch() in onchange
 //here in line 15 i am able to write the state by using dispatch and a action 
 
-class ExpensesListFilter extends React.Component {
+export class ExpensesListFilter extends React.Component {
     state = {
         calendarFocused: null
     }
 
     onDatesChange = ({ startDate, endDate }) => {
-        this.props.dispatch(setStartDateAction(startDate));
-        this.props.dispatch(setEndDateAction(endDate));
+        this.props.setStartDate(startDate);
+        this.props.setEndDate(endDate);
     };
 
     onFocusChange = (calendarFocused) => {
         this.setState(() => ({ calendarFocused }));
     };
 
+    onTextChange = (e) => {
+        this.props.setTextFilter(e.target.value);
+    };
+
+    onSortChange = (e) => {
+        e.target.value === 'amount' ? this.props.sortByAmount() : this.props.sortByDate()
+    };
+
     render() {
         return (
             <div>
                 <br />
-                <label>Filter Used is:</label><input type='text' value={this.props.filters.text} onChange={(e) => {
-                    this.props.dispatch(setTextFilterAction(e.target.value))
-                }} />
+                <label>Filter Used is:</label><input type='text' value={this.props.filters.text} onChange={this.onTextChange} />
                 <br />
-                <select value={this.props.filters.sortBy} onChange={(e) => {
-                    e.target.value === 'amount' ? this.props.dispatch(sortByAmountAction()) : this.props.dispatch(sortByDateAction())
-                }}>
+                <select value={this.props.filters.sortBy} onChange={this.onSortChange}>
                     <option value='date'>Date</option>
                     <option value='amount'>Amount</option>
                 </select>
@@ -46,7 +50,7 @@ class ExpensesListFilter extends React.Component {
                     focusedInput={this.state.calendarFocused}
                     onFocusChange={this.onFocusChange}
                     numberOfMonths={1}
-                    isOutsideRange={()=> false}
+                    isOutsideRange={() => false}
                     showClearDates={true}
                 />
             </div>
@@ -60,4 +64,15 @@ const mapSateToProps = (state) => {
     }
 };
 
-export default connect(mapSateToProps)(ExpensesListFilter);
+const mapDispatchToProps = (dispatch, props) => (
+    {
+        setStartDate: (startDate) => dispatch(setStartDateAction(startDate)),
+        setEndDate: (endDate) => dispatch(setEndDateAction(endDate)),
+        setTextFilter: (value) => dispatch(setTextFilterAction(value)),
+        sortByAmount: () => dispatch(sortByAmountAction()),
+        sortByDate: () => dispatch(sortByDateAction())
+
+    }
+);
+
+export default connect(mapSateToProps, mapDispatchToProps)(ExpensesListFilter);
