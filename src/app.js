@@ -18,8 +18,8 @@ const unsubscribe = store.subscribe(() => {
     console.log(visibleExpenses);
 });
 
-store.dispatch(addExpenseAction({ description: 'Water Bill', note: 'Adding new Bill', amount: 2500, createdAt: 1200 }));
-store.dispatch(addExpenseAction({ description: 'Gas Bill', note: 'Adding new Gas', amount: 1200, createdAt: 1500 }));
+//store.dispatch(addExpenseAction({ description: 'Water Bill', note: 'Adding new Bill', amount: 2500, createdAt: 1200 }));
+//store.dispatch(addExpenseAction({ description: 'Gas Bill', note: 'Adding new Gas', amount: 1200, createdAt: 1500 }));
 
 //provider enables our store to be available for each component 
 //provider accepts a prop that is store
