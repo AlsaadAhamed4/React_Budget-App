@@ -2,8 +2,16 @@ const path = require('path'); //a node property
 
 console.log(path.join(__dirname, 'Public')); //__dirname gives the absolute path name for any system
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //for css bundle / separate file
+
 module.exports = (env) => {
     const isProduction = env === 'production';
+
+    //creating a new instance by passing the file name 
+    const MiniCSSExtract = new MiniCssExtractPlugin({
+        filename: 'Styles.css'
+    });
+
     return {
         entry: './src/app.js',
         output: {
@@ -20,10 +28,27 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.s?css$/, //specifiying rules for css whenever .css file is found
-                    use: ['style-loader', 'css-loader', 'sass-loader']  //in use we can pass array of loader
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',   //TODO does not show source maps in development mode. 
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',   //TODO does not show source maps in development mode. 
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ]  //in use we can pass array/object of loaders
                 }
             ]
         },
+
+        plugins: [MiniCSSExtract],
+
         devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',  //for error handling is very important
 
         devServer: {
