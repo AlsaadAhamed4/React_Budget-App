@@ -20,6 +20,7 @@ export class ExpensesListFilter extends React.Component {
     };
 
     onFocusChange = (calendarFocused) => {
+        console.log(calendarFocused);
         this.setState(() => ({ calendarFocused }));
     };
 
