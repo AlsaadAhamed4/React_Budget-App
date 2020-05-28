@@ -6,7 +6,8 @@
   "scripts": {
     "live-server": "live-server Public/",
     "dev-server": "webpack-dev-server",
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
     "test": "jest",
     "test-watch": "jest --config=jest.config.json --watch"
   },
