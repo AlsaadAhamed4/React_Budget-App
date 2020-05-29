@@ -9,7 +9,9 @@
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
     "test": "jest",
-    "test-watch": "jest --config=jest.config.json --watch"
+    "test-watch": "jest --config=jest.config.json --watch",
+    "start": "node Server/Server.js",
+    "heroku-postbuild":"npm run build:prod"
   },
   "author": "Alsaad Ahamed",
   "license": "ISC",

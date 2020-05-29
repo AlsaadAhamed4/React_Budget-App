@@ -4,6 +4,7 @@ const express = require('express')
 const path = require('path');
 const app = express();
 const publicPath = path.join(__dirname, '..', 'Public'); //setting the path by using join method
+const port = process.env.PORT || 3000; //for heroku port
 
 app.use(express.static(publicPath)); // we saying to serve defined path which is Public folder
 
@@ -13,6 +14,6 @@ app.get('*', (req, res) => {
 });
 
 //to setup server by using listen method
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('server is Up');
 });
