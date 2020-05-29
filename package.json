@@ -11,7 +11,7 @@
     "test": "jest",
     "test-watch": "jest --config=jest.config.json --watch",
     "start": "node Server/Server.js",
-    "heroku-postbuild":"npm run build:prod"
+    "heroku-postbuild": "npm run build:prod"
   },
   "author": "Alsaad Ahamed",
   "license": "ISC",
@@ -23,12 +23,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "css-loader": "^3.5.3",
-    "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
-    "enzyme-to-json": "^3.0.1",
     "express": "^4.17.1",
-    "jest": "^26.0.1",
-    "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^0.9.0",
     "moment": "^2.26.0",
     "node-sass": "^4.14.1",
@@ -41,14 +36,21 @@
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-test-renderer": "^16.0.0",
     "redux": "^4.0.5",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "uniqid": "^5.2.0",
     "uuid": "^8.0.0",
     "webpack": "^4.41.4",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^3.3.10"
+  },
+  "devDependencies": {
+    "enzyme": "^3.0.0",
+    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme-to-json": "^3.0.1",
+    "jest": "^26.0.1",
+    "live-server": "^1.2.1",
+    "react-test-renderer": "^16.0.0",
     "webpack-dev-server": "^3.11.0"
   }
 }

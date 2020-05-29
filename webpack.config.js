@@ -15,7 +15,7 @@ module.exports = (env) => {
     return {
         entry: './src/app.js',
         output: {
-            path: path.join(__dirname, 'Public'),
+            path: path.join(__dirname, 'Public', 'dist'),
             filename: 'bundle.js'
         },
 
@@ -53,7 +53,8 @@ module.exports = (env) => {
 
         devServer: {
             contentBase: path.join(__dirname, 'Public'),
-            historyApiFallback: true    //this is for route to same page when multiple routes are there in single page, this says to load index.html when 404 found
+            historyApiFallback: true,   //this is for route to same page when multiple routes are there in single page, this says to load index.html when 404 found
+            publicPath: '/dist/'  //this is because we changed the path to Public/dist from Public
         }
     };
 };
