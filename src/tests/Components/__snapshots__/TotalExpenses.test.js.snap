@@ -2,13 +2,26 @@
 
 exports[`should render totalExpenses 1`] = `
 <div>
-  <p>
+  <h1>
     Viewing 
     1
-     expenses - Totaling 
+     
+    expense
+     - Totaling 
     $222.10
-  </p>
+  </h1>
 </div>
 `;
 
-exports[`should render totalExpenses to be empty 1`] = `<div />`;
+exports[`should render totalExpenses to be empty 1`] = `
+<div>
+  <h1>
+    Viewing 
+    0
+     
+    expenses
+     - Totaling 
+    $0.00
+  </h1>
+</div>
+`;
