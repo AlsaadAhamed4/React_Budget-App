@@ -9,6 +9,7 @@ import { addExpenseAction, removeExpenseAction, editExpenseAction } from './Acti
 import { sortByAmountAction, sortByDateAction, setStartDateAction, setEndDateAction, setTextFilterAction } from './Actions/FiltersAction';
 import filterExpenses from './Selectors/FilterExpenses';
 import 'react-dates/lib/css/_datepicker.css';
+import './firebase/firebase';
 
 const store = ExpensifyStore();
 
