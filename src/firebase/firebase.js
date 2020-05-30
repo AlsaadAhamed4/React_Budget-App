@@ -13,6 +13,21 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-firebase.database().ref().set({
-    name: 'Alsaad Ahamed'
+const database = firebase.database();
+
+database.ref().set({
+    name: 'Alsaad Ahamed',
+    age: 23,
+    isSingle: true,
+    loaction: {
+        city: 'Kaup',
+        country: 'India'
+    }
+});
+
+database.ref('location/city').set('majoor');
+
+database.ref('attributes').set({
+    heigth: '5.2cm',
+    weight: '68kg'
 });
