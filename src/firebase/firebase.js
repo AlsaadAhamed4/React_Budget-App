@@ -15,7 +15,7 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().set({
+/* database.ref().set({
     name: 'Alsaad Ahamed',
     age: 23,
     isSingle: true,
@@ -23,11 +23,58 @@ database.ref().set({
         city: 'Kaup',
         country: 'India'
     }
+}).then(() => {
+    console.log('data is been saved');
+}).catch((e) => {
+    console.log('There was an error', e);
 });
 
-database.ref('location/city').set('majoor');
+database.ref('location/city').set('majoor')
+    .then(() => {
+        console.log('Saved Location data in Database');
+    }).catch((e) => {
+        console.log('There was an  error', e);
+    });
 
 database.ref('attributes').set({
     heigth: '5.2cm',
     weight: '68kg'
+}).then(() => {
+    console.log('Attributes data was saved in database');
+}).catch((e) => {
+    console.log('There was an  error', e);
 });
+
+
+database.ref('isSingle').remove()
+    .then(() => {
+        console.log('Removed isSingle from DB');
+    }).catch((e) => {
+        console.log('There was an Erron while removing', e)
+    }); */
+
+
+/* database.ref().update({
+    name: 'Saad Ahamed',
+    age: 23,
+    isSingle: null,
+    streeLevel:6,
+    job:{
+        title:'Software Developer',
+        company:'Cerner'
+    }
+}).then(() => {
+    console.log('Update data from DB');
+}).catch((e) => {
+    console.log('There was an Erron while updating', e)
+}); */
+
+database.ref().update({
+    streeLevel:4,
+    'job/company':'Paytm',
+    'location/country':'Bangalore'
+}).then(() => {
+    console.log('Update data from DB');
+}).catch((e) => {
+    console.log('There was an Erron while updating', e)
+}); 
