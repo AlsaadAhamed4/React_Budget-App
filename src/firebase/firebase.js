@@ -122,9 +122,9 @@ setTimeout(()=>{
 },3500);
  */
 
- //pushing Arrays based data to firebase using push 
+//pushing Arrays based data to firebase using push 
 
- database.ref('Expenses').push({
+/*  database.ref('Expenses').push({
      description:'Alsaad test Expenses 1',
      note:'Optional',
      amount:52000,
@@ -143,4 +143,45 @@ database.ref('Expenses').push({
     note:'Optional',
     amount:3251,
     createdAt:777
+}); */
+
+//to read objects and store it in an array from firebase
+/* database.ref('Expenses').once('value', (snapshot) => {
+    let Expenses = [];
+    snapshot.forEach((childSnapshot) =>{
+        Expenses.push({
+            id:childSnapshot.key,
+            ...childSnapshot.val()
+        })
+    })
+    console.log(Expenses);
+}); */
+
+// creating a firebase array version of list
+const onchangeExpensesData = database.ref('Expenses').on('value', (snapshot) => {
+    const Expenses = [];
+    snapshot.forEach((childSnapshot) => {
+        Expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+        })
+    });
+    console.log(Expenses);
+}, (e) => {
+    console.log('There was error', e);
+});
+
+//setting up the event listner when a child is removed from the database
+database.ref('Expenses').on('child_removed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
+
+//setting up the event listner when a child value is changed from the database
+database.ref('Expenses').on('child_changed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
+
+//setting up the event listner when a child value is added from the database
+database.ref('Expenses').on('child_added',(snapshot)=>{
+    console.log(snapshot.key,snapshot.val(),'You added expenses');
 });
