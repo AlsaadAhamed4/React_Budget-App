@@ -108,7 +108,9 @@ setTimeout(() => {
     database.ref('name').set('saad Ahamed');
 }, 8000); */
 
-const onValueChange = database.ref().on('value', (snapShot) => {
+
+//Fectching the data from the server
+/* const onValueChange = database.ref().on('value', (snapShot) => {
     const val = snapShot.val();
     console.log(`Hi ${val.name} here I am from ${val.location.city} which is in ${val.location.country} and I work in ${val.job.company}, Thanks`);
 }, (e) => {
@@ -118,3 +120,27 @@ const onValueChange = database.ref().on('value', (snapShot) => {
 setTimeout(()=>{
     database.ref('location/country').set('Spain');
 },3500);
+ */
+
+ //pushing Arrays based data to firebase using push 
+
+ database.ref('Expenses').push({
+     description:'Alsaad test Expenses 1',
+     note:'Optional',
+     amount:52000,
+     createdAt:1475412
+ });
+
+ database.ref('Expenses').push({
+    description:'Alsaad test Expenses 2',
+    note:'Optional',
+    amount:1200,
+    createdAt:4754
+});
+
+database.ref('Expenses').push({
+    description:'Alsaad test Expenses 3',
+    note:'Optional',
+    amount:3251,
+    createdAt:777
+});
