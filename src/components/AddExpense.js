@@ -1,14 +1,14 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux';
-import { addExpenseAction } from '../Actions/ExpenseAction';
+import { startAddExpenseAction } from '../Actions/ExpenseAction';
 
 //made a class base function to remove inline function for submit by using mapDispatchToProps
 //export for testing
 
 export class AddExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.addExpense(expense) //dispatching through mapDispatchToProps
+        this.props.startAddExpenseAction(expense) //dispatching through mapDispatchToProps
         this.props.history.push('/')
     }
     render(){
@@ -47,7 +47,7 @@ export class AddExpensePage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => (
     {
-        addExpense: (expense) => dispatch(addExpenseAction(expense))
+        startAddExpenseAction: (expense) => dispatch(startAddExpenseAction(expense))
     }
 );
 

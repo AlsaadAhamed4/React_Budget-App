@@ -15,6 +15,8 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
+export { firebase, database as default }
+
 /* database.ref().set({
     name: 'Alsaad Ahamed',
     age: 23,
@@ -158,7 +160,7 @@ database.ref('Expenses').push({
 }); */
 
 // creating a firebase array version of list
-const onchangeExpensesData = database.ref('Expenses').on('value', (snapshot) => {
+/* const onchangeExpensesData = database.ref('Expenses').on('value', (snapshot) => {
     const Expenses = [];
     snapshot.forEach((childSnapshot) => {
         Expenses.push({
@@ -184,4 +186,4 @@ database.ref('Expenses').on('child_changed', (snapshot) => {
 //setting up the event listner when a child value is added from the database
 database.ref('Expenses').on('child_added',(snapshot)=>{
     console.log(snapshot.key,snapshot.val(),'You added expenses');
-});
+}); */
