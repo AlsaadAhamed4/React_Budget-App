@@ -69,7 +69,7 @@ database.ref('isSingle').remove()
     console.log('There was an Erron while updating', e)
 }); */
 
-database.ref().update({
+/* database.ref().update({
     streeLevel:4,
     'job/company':'Paytm',
     'location/country':'Bangalore'
@@ -77,4 +77,44 @@ database.ref().update({
     console.log('Update data from DB');
 }).catch((e) => {
     console.log('There was an Erron while updating', e)
-}); 
+});  */
+
+
+/* database.ref().once('value')
+    .then((snapshot) => {
+        const val = snapshot.val();
+        console.log(val);
+    }).catch((e) => {
+        console.log('There was an error', e)
+    }); */
+
+//on return the callback function so we store in a variable an can be used to unsubscribe
+
+/* const onValueChange = database.ref().on('value', (snapshot) => {
+    console.log(snapshot.val());
+}, (e) => {
+    console.log('There was an error', e)
+});
+
+setTimeout(() => {
+    database.ref('name').set('Alsaad Ahamed');
+}, 5000);
+
+setTimeout(() => {
+    database.ref().off('value', onValueChange); // to unscribe the changes displayed
+}, 6000);
+
+setTimeout(() => {
+    database.ref('name').set('saad Ahamed');
+}, 8000); */
+
+const onValueChange = database.ref().on('value', (snapShot) => {
+    const val = snapShot.val();
+    console.log(`Hi ${val.name} here I am from ${val.location.city} which is in ${val.location.country} and I work in ${val.job.company}, Thanks`);
+}, (e) => {
+    console.log('There was an error', e);
+});
+
+setTimeout(()=>{
+    database.ref('location/country').set('Spain');
+},3500);
