@@ -14,17 +14,17 @@ const expenses = [
 
 //since we are using same lines of code for each test we can handle that by using jest lifecycle methods
 
-let addExpense, historyspy, wrapper;
+let startAddExpenseAction, historyspy, wrapper;
 
 //run before eact test cases
 
 beforeEach(() => {
     //spie in enzyme
-    addExpense = jest.fn();
+    startAddExpenseAction = jest.fn();
     historyspy = {
         push: jest.fn()
     }
-    wrapper = shallow(<AddExpensePage addExpense={addExpense} history={historyspy} />);
+    wrapper = shallow(<AddExpensePage startAddExpenseAction={startAddExpenseAction} history={historyspy} />);
 });
 
 test('should render add expense page corectly', () => {
@@ -34,5 +34,5 @@ test('should render add expense page corectly', () => {
 test('should handle on submit', () => {
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
     expect(historyspy.push).toHaveBeenLastCalledWith('/'); //checking whether it was called by the data
-    expect(addExpense).toHaveBeenLastCalledWith(expenses[0]);
+    expect(startAddExpenseAction).toHaveBeenLastCalledWith(expenses[0]);
 });

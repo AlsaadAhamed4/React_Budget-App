@@ -16,7 +16,8 @@ export const startAddExpenseAction = ({ description = '', note = '', amount = 0,
     return (dispatch) => {
         const expense = { description, note, amount, createdAt };
         //add to Db -- till push we are adding to DB , to display in front-end we pass an action in then
-        database.ref('expenses').push(expense).then((ref) => {
+        //added return for testing purpose
+        return database.ref('expenses').push(expense).then((ref) => {
             dispatch(addExpenseAction({ id: ref.key, ...expense }))
         })
     }
