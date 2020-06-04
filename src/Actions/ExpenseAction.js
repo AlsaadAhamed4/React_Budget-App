@@ -48,6 +48,16 @@ export const editExpenseAction = (id, updates) => (
     }
 );
 
+export const startEditExpenseAction = (id, updates) => {
+    return (dispatch) => {
+        //updating the DB
+        return database.ref(`expenses/${id}`).update({ ...updates }).then((snapshot) => {
+            //update store
+            dispatch(editExpenseAction(id, updates));
+        });
+    }
+}
+
 //SET_EXPENSE Dispatch Action fetch data fro server and add it to store
 export const setExpense = (expense) => ({
     type: 'SET_EXPENSE',
