@@ -1,9 +1,8 @@
-import { addExpenseAction, editExpenseAction, removeExpenseAction, startAddExpenseAction, setExpense, startSetExpenseAction } from '../../Actions/ExpenseAction';
+import { addExpenseAction, editExpenseAction, removeExpenseAction, startRemoveExpenseAction, startAddExpenseAction, setExpense, startSetExpenseAction } from '../../Actions/ExpenseAction';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
 import { testExpenseData } from '../TestData/TestData';
-import { act } from 'react-test-renderer';
 
 const createMockStore = configureMockStore([thunk]);
 
@@ -122,17 +121,43 @@ test('should test setExpense action dispatcher', () => {
     });
 });
 
-test('should fetch the expenses from firbase', () => {
-    console.log(expensesData);
+test('should fetch the expenses from firbase', (done) => {
     const store = createMockStore();
     store.dispatch(startSetExpenseAction()).then(() => {
         const action = store.getActions();
         //testing store
         expect(action[0]).toEqual({
             type: 'SET_EXPENSE',
-            expense: expensesData //from we store in Db before each test cases
+            expense: testExpenseData //from we store in Db before each test cases
         });
         done();
     });
 });
+
+test('should test removeExpenseAction Action generator', () => {
+    const id = '2';
+    const action = removeExpenseAction(id);
+    expect(action).toEqual({
+        type: 'REMOVE_EXPENSE',
+        id
+    });
+});
+
+test('should remove expense from store and DB', (done) => {
+    const store = createMockStore();
+    const id = testExpenseData[0].id;
+    store.dispatch(startRemoveExpenseAction({ id })).then(() => {
+        const action = store.getActions();
+        //testing the store
+        expect(action[0]).toEqual({
+            type: 'REMOVE_EXPENSE',
+            id
+        });
+        database.ref(`expense/${id}`).once('value').then((snapshot)=>{
+            expect(snapshot.val()).toBeFalsy();
+        });
+        done();
+    });
+});
+
 

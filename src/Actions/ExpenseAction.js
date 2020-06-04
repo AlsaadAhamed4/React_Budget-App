@@ -19,16 +19,26 @@ export const startAddExpenseAction = ({ description = '', note = '', amount = 0,
         //added return for testing purpose
         return database.ref('expenses').push(expense).then((ref) => {
             dispatch(addExpenseAction({ id: ref.key, ...expense }))
-        })
+        });
     }
 };
 
-export const removeExpenseAction = ({ id } = {}) => (
+export const removeExpenseAction = (id) => (
     {
         type: 'REMOVE_EXPENSE',
         id
     }
 );
+
+export const startRemoveExpenseAction = ({ id } = {}) => {
+    return (dispatch) => {
+        //remove from DB
+        return database.ref(`expenses/${id}`).remove().then(() => {
+            //to remove from store
+            dispatch(removeExpenseAction(id));
+        });
+    }
+}
 
 export const editExpenseAction = (id, updates) => (
     {

@@ -8,7 +8,7 @@ import { startAddExpenseAction } from '../Actions/ExpenseAction';
 
 export class AddExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.startAddExpenseAction(expense) //dispatching through mapDispatchToProps
+        this.props.startAddExpense(expense) //dispatching through mapDispatchToProps
         this.props.history.push('/')
     }
     render(){
@@ -47,7 +47,7 @@ export class AddExpensePage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => (
     {
-        startAddExpenseAction: (expense) => dispatch(startAddExpenseAction(expense))
+        startAddExpense: (expense) => dispatch(startAddExpenseAction(expense))
     }
 );
 
