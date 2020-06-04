@@ -1,5 +1,6 @@
 import expenseReducer from '../../Reducers/ExpenseReducer';
 import moment from 'moment';
+import { testExpenseData } from '../TestData/TestData';
 
 test('should setup default expense Reducer', () => {
     const action = expenseReducer(undefined, { type: '@@INIT' })
@@ -99,4 +100,14 @@ test('should  setup edit expense without id', () => {
     }
     const result = expenseReducer(expenses, action);
     expect(result).toEqual(expenses)
-})
+});
+
+test('should set expenses Reducer', () => {
+    const action = {
+        type: 'SET_EXPENSE',
+        expense: [testExpenseData[0]]
+    }
+    const result = expenseReducer(expenses, action);
+    expect(result).toEqual([testExpenseData[0]]);
+});
+

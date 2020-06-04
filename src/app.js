@@ -5,7 +5,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import AppRouter from './routers/AppRouters';
 import ExpensifyStore from './Store/ExpensifyStore';
-import { addExpenseAction, removeExpenseAction, editExpenseAction } from './Actions/ExpenseAction';
+import { addExpenseAction, removeExpenseAction, editExpenseAction, startSetExpenseAction } from './Actions/ExpenseAction';
 import { sortByAmountAction, sortByDateAction, setStartDateAction, setEndDateAction, setTextFilterAction } from './Actions/FiltersAction';
 import filterExpenses from './Selectors/FilterExpenses';
 import 'react-dates/lib/css/_datepicker.css';
@@ -30,6 +30,11 @@ const jsx = (
     </Provider>
 );
 
+//before fetching data from server
+ReactDOM.render(<p>Loading....</p>, document.getElementById('app'));
 
+//after sucessfull fetch through startSetExpense
+store.dispatch(startSetExpenseAction()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('app'));
+});
 
-ReactDOM.render(jsx, document.getElementById('app'));
