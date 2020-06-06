@@ -9,7 +9,7 @@ import { addExpenseAction, removeExpenseAction, editExpenseAction, startSetExpen
 import { sortByAmountAction, sortByDateAction, setStartDateAction, setEndDateAction, setTextFilterAction } from './Actions/FiltersAction';
 import filterExpenses from './Selectors/FilterExpenses';
 import 'react-dates/lib/css/_datepicker.css';
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 
 const store = ExpensifyStore();
 
@@ -36,5 +36,14 @@ ReactDOM.render(<p>Loading....</p>, document.getElementById('app'));
 //after sucessfull fetch through startSetExpense
 store.dispatch(startSetExpenseAction()).then(() => {
     ReactDOM.render(jsx, document.getElementById('app'));
+});
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log('Logged in');
+    }
+    else {
+        console.log('logged out');
+    }
 });
 
