@@ -7,6 +7,7 @@ import AppRouter, { history } from './routers/AppRouters';
 import ExpensifyStore from './Store/ExpensifyStore';
 import { addExpenseAction, removeExpenseAction, editExpenseAction, startSetExpenseAction } from './Actions/ExpenseAction';
 import { sortByAmountAction, sortByDateAction, setStartDateAction, setEndDateAction, setTextFilterAction } from './Actions/FiltersAction';
+import { login, Logout } from '../src/Actions/auth';
 import filterExpenses from './Selectors/FilterExpenses';
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
@@ -43,6 +44,7 @@ const renderApp = () => {
 //before fetching data from server
 ReactDOM.render(<p>Loading....</p>, document.getElementById('app'));
 
+//below code runs when we loads the app and when app status changes
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         //after sucessfull fetch through startSetExpense
@@ -54,11 +56,13 @@ firebase.auth().onAuthStateChanged((user) => {
             }
         });
         console.log('LoggedIn');
+        store.dispatch(login(user.uid));
     }
     else {
         console.log('LoggedOut');
         renderApp();
         history.push('/'); //login page
+        store.dispatch(Logout());
     }
 });
 
