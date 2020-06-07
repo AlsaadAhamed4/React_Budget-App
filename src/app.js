@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'; //to connect react and redux
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import AppRouter from './routers/AppRouters';
+import AppRouter, { history } from './routers/AppRouters';
 import ExpensifyStore from './Store/ExpensifyStore';
 import { addExpenseAction, removeExpenseAction, editExpenseAction, startSetExpenseAction } from './Actions/ExpenseAction';
 import { sortByAmountAction, sortByDateAction, setStartDateAction, setEndDateAction, setTextFilterAction } from './Actions/FiltersAction';
@@ -30,20 +30,35 @@ const jsx = (
     </Provider>
 );
 
+let hasRendered = false;
+
+//rendering the app once 
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'));
+        hasRendered = true;
+    }
+}
+
 //before fetching data from server
 ReactDOM.render(<p>Loading....</p>, document.getElementById('app'));
 
-//after sucessfull fetch through startSetExpense
-store.dispatch(startSetExpenseAction()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
-});
-
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log('Logged in');
+        //after sucessfull fetch through startSetExpense
+        store.dispatch(startSetExpenseAction()).then(() => {
+            ReactDOM.render(jsx, document.getElementById('app'));
+            renderApp();
+            if (history.location.pathname === '/') {
+                history.push('/dashboard');
+            }
+        });
+        console.log('LoggedIn');
     }
     else {
-        console.log('logged out');
+        console.log('LoggedOut');
+        renderApp();
+        history.push('/'); //login page
     }
 });
 
