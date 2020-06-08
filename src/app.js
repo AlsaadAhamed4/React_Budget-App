@@ -48,6 +48,7 @@ ReactDOM.render(<p>Loading....</p>, document.getElementById('app'));
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         //after sucessfull fetch through startSetExpense
+        store.dispatch(login(user.uid));
         store.dispatch(startSetExpenseAction()).then(() => {
             ReactDOM.render(jsx, document.getElementById('app'));
             renderApp();
@@ -56,7 +57,6 @@ firebase.auth().onAuthStateChanged((user) => {
             }
         });
         console.log('LoggedIn');
-        store.dispatch(login(user.uid));
     }
     else {
         console.log('LoggedOut');

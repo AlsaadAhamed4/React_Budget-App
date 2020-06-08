@@ -45,12 +45,13 @@ test('Should set-up default Add expense action object', () => {
 });  end of old test cases*/
 
 let expensesData = {};
+const uid = 'testinguserid'
 
 beforeEach((done) => {
     testExpenseData.forEach(({ id, description, note, amount, createdAt }) => {
         expensesData[id] = { description, note, amount, createdAt }
     });
-    database.ref('expenses').set(expensesData).then(() => done());
+    database.ref(`users/${uid}/expenses`).set(expensesData).then(() => done());
 });
 
 
@@ -122,7 +123,7 @@ test('should test setExpense action dispatcher', () => {
 });
 
 test('should fetch the expenses from firbase', (done) => {
-    const store = createMockStore();
+    const store = createMockStore({ auth: { uid } });
     store.dispatch(startSetExpenseAction()).then(() => {
         const action = store.getActions();
         //testing store
@@ -144,7 +145,7 @@ test('should test removeExpenseAction Action generator', () => {
 });
 
 test('should remove expense from store and DB', (done) => {
-    const store = createMockStore();
+    const store = createMockStore({ auth: { uid } });
     const id = testExpenseData[2].id;
     store.dispatch(startRemoveExpenseAction({ id })).then(() => {
         const action = store.getActions();
@@ -153,7 +154,7 @@ test('should remove expense from store and DB', (done) => {
             type: 'REMOVE_EXPENSE',
             id
         });
-        database.ref(`expense/${id}`).once('value').then((snapshot) => {
+        database.ref(`users/${uid}/expenses/${id}`).once('value').then((snapshot) => {
             expect(snapshot.val()).toBeFalsy();
         });
         done();
@@ -178,7 +179,7 @@ test('should edit expense in DB and store', (done) => {
     const updates = {
         description: 'Alsaad edit'
     };
-    const store = createMockStore();
+    const store = createMockStore({ auth: { uid } });
     store.dispatch(startEditExpenseAction(id, updates)).then(() => {
         const action = store.getActions();
         expect(action[0]).toEqual({
@@ -186,7 +187,7 @@ test('should edit expense in DB and store', (done) => {
             id,
             updates
         });
-        database.ref(`expenses/${id}`).once('value').then((snapshot) => {
+        database.ref(`users/${uid}/expenses/${id}`).once('value').then((snapshot) => {
             expect(snapshot.val().description).toBe(updates.description);
         });
         done();

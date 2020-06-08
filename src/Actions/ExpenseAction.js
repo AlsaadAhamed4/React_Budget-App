@@ -10,14 +10,16 @@ export const addExpenseAction = (expense) => (
     }
 );
 
-//Since we are using database and passing as function  we need to change the action a little bit
+//Since we are using database and passing as function  we need to change the action a little bit.
+//as we have created user so we change the structure of DB
 
 export const startAddExpenseAction = ({ description = '', note = '', amount = 0, createdAt = 0 } = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const expense = { description, note, amount, createdAt };
         //add to Db -- till push we are adding to DB , to display in front-end we pass an action in then
         //added return for testing purpose
-        return database.ref('expenses').push(expense).then((ref) => {
+        return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
             dispatch(addExpenseAction({ id: ref.key, ...expense }))
         });
     }
@@ -31,9 +33,10 @@ export const removeExpenseAction = (id) => (
 );
 
 export const startRemoveExpenseAction = ({ id } = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         //remove from DB
-        return database.ref(`expenses/${id}`).remove().then(() => {
+        return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
             //to remove from store
             dispatch(removeExpenseAction(id));
         });
@@ -49,9 +52,10 @@ export const editExpenseAction = (id, updates) => (
 );
 
 export const startEditExpenseAction = (id, updates) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         //updating the DB
-        return database.ref(`expenses/${id}`).update({ ...updates }).then((snapshot) => {
+        return database.ref(`users/${uid}/expenses/${id}`).update({ ...updates }).then((snapshot) => {
             //update store
             dispatch(editExpenseAction(id, updates));
         });
@@ -66,9 +70,10 @@ export const setExpense = (expense) => ({
 
 //startSerExpense ASYNC Function
 export const startSetExpenseAction = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const dbExpenses = [];
-        return database.ref('expenses').once('value').then((snapshot) => {
+        return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 dbExpenses.push({
                     id: childSnapshot.key,
