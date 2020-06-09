@@ -1,0 +1,21 @@
+.header {
+    background  : $dark-blue-header;
+    //display   : flex;
+}
+
+.header__content {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    padding        : $s-size 0;
+}
+
+.header__link {
+    text-decoration: none;
+    color          : white;
+    padding        : $l-size;
+
+    h1 {
+        margin: 0;
+    }
+}
