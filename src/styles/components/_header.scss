@@ -7,13 +7,12 @@
     display        : flex;
     justify-content: space-between;
     align-items    : center;
-    padding        : $s-size 0;
 }
 
 .header__link {
     text-decoration: none;
     color          : white;
-    padding        : $l-size;
+    padding        : $l-size 0;
 
     h1 {
         margin: 0;

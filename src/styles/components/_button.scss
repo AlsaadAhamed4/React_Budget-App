@@ -4,4 +4,10 @@
     border          : none;
     padding         : 1rem;
     font-weight     : $btn-font-size;
+    text-decoration : none;
+    display         : inline-block;
+}
+
+.button--link {
+    background: none;
 }

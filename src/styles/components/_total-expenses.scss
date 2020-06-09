@@ -1,0 +1,18 @@
+.totalexpense-header {
+    background     : #F9F7F9;
+    background-size: cover;
+    padding        : $l-size 0;
+}
+
+.totalexpense-header__action {
+    margin: $l-size 0 0 0;
+}
+
+.totalexpense-content__title {
+    margin     : 0;
+    font-weight: 100;
+
+    span {
+        font-weight: 600;
+    }
+}
