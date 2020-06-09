@@ -3,9 +3,10 @@ html {
 }
 
 body {
-    font-family     : Helvetica, Arial, sans-serif;
-    font-size       : $m-size; //16px
-    background-color: wheat;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size  : $m-size; //16px
+    color      : $dark-grey;
+    line-height: 1.6rem;
 }
 
 button {
@@ -16,6 +17,6 @@ button:disabled {
     cursor: default;
 }
 
-.is-active{
-   color : red;
+.is-active {
+    color: red;
 }
