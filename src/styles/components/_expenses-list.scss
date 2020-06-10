@@ -1,0 +1,54 @@
+.expenseslist-content {
+    background: #F9F7F9;
+    border    : 1px solid #DBDBDB;
+}
+
+.expenseslist-content__title {
+    display        : flex;
+    justify-content: space-between;
+    padding        : 1.6rem;
+
+    >* {
+        margin: 0;
+    }
+}
+
+.expenselist-content__layout {
+    border: 1px solid #DBDBDB;
+}
+
+.expenselist-item {
+    @extend .expenseslist-content__title;
+    border-bottom: 1px solid #DBDBDB;
+    align-items  : center;
+}
+
+div.expenselist-item__name {
+    h1 {
+        margin    : 0 0 0.6rem 0;
+        word-break: break-all;
+        font-size : larger
+    }
+
+    p {
+        margin   : 0;
+        font-size: small;
+    }
+}
+
+div.expenselist-item__amount>p {
+    margin: 0 0 0 5px;
+    color : red;
+}
+
+.expenselist-item--link {
+    text-decoration: none;
+    color          : $dark-blue-header;
+}
+
+.expenselist-item__empty {
+    text-align : center;
+    font-weight: 500;
+    color      : $dark-blue-header;
+    font-size  : large;
+}
