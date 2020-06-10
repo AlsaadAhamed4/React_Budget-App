@@ -1,0 +1,22 @@
+.form {
+    display       : flex;
+    flex-direction: column;
+
+    >* {
+        margin-bottom: $m-size;
+    }
+}
+
+.form__error {
+    font-style: italic;
+    color     : red;
+}
+
+//for 3 part modules datePicker
+.SingleDatePickerInput {
+    width: 100%;
+
+    >.DateInput {
+        width: inherit;
+    }
+}

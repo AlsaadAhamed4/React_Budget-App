@@ -1,13 +1,17 @@
 .button {
-    color           : white;
-    background-color: $blue-button;
-    border          : none;
-    padding         : 1rem;
-    font-weight     : $btn-font-size;
-    text-decoration : none;
-    display         : inline-block;
+    color          : white;
+    background     : $blue-button;
+    border         : none;
+    padding        : 1rem;
+    font-weight    : $btn-font-size;
+    text-decoration: none;
+    display        : inline-block;
 }
 
 .button--link {
     background: none;
+}
+
+.remove-button--modifier {
+    background: $secondary;
 }

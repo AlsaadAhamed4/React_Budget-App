@@ -75,16 +75,16 @@ export default class ExpenseForm extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.state.errMsg && <p>{this.state.errMsg}</p>}
-                <form onSubmit={this.onSubmit}>
-                    <input className='text-input' type='text' placeholder='Description' autoFocus value={this.state.description} onChange={this.onDescriptionChange} />
-                    <input className='text-input' type='text' placeholder='Amount' value={this.state.amount} onChange={this.onAmountChange} />
-                    <SingleDatePicker date={this.state.createdAt} onDateChange={this.onDateChange} focused={this.state.calendarFocused} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={() => false} />
-                    <textarea className='textarea' placeholder='Add a note for your expense (optional)' value={this.state.note} onChange={this.onNoteChange} />
-                    <button>{this.state.buttonName}</button>
-                </form>
-            </div>
+            <form className='form' onSubmit={this.onSubmit}>
+                {this.state.errMsg && <p className='form__error'>*{this.state.errMsg}</p>}
+                <input className='text-input' type='text' placeholder='Description' autoFocus value={this.state.description} onChange={this.onDescriptionChange} />
+                <input className='text-input' type='text' placeholder='Amount' value={this.state.amount} onChange={this.onAmountChange} />
+                <SingleDatePicker date={this.state.createdAt} onDateChange={this.onDateChange} focused={this.state.calendarFocused} onFocusChange={this.onFocusChange} numberOfMonths={1} isOutsideRange={() => false} />
+                <textarea className='textarea' placeholder='Add a note for your expense (optional)' value={this.state.note} onChange={this.onNoteChange} />
+                <div>
+                    <button className='button'>{this.state.buttonName}</button>
+                </div>
+            </form>
         )
     }
 }
