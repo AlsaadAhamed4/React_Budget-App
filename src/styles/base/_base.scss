@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box; //for height settings 
+}
+
 html {
     font-size: 62.5%; //1 rem is 16px so 16*62.5% = 10
 }
