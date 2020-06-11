@@ -14,13 +14,18 @@
 }
 
 .expenselist-content__layout {
-    border: 1px solid $grey-border;
+    border       : 1px solid $grey-border;
+    border-top   : none;
+    border-bottom: none;
 }
 
 .expenselist-item {
-    @extend .expenseslist-content__title;
     border-bottom: 1px solid $grey-border;
-    align-items  : center;
+    transition   : background .3s ease;
+
+    &:hover {
+        background: $off-white;
+    }
 }
 
 div.expenselist-item__name {
@@ -42,6 +47,8 @@ div.expenselist-item__amount>p {
 }
 
 .expenselist-item--link {
+    @extend .expenseslist-content__title;
+    align-items    : center;
     text-decoration: none;
     color          : $dark-blue-header;
 }
