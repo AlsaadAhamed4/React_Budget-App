@@ -1,0 +1,15 @@
+//other UI for epxense list
+
+//to show only expenses
+.show-for-mobile {
+    @media(min-width:$desktop-breakpoint) {
+        display: none;
+    }
+}
+
+//to show expense and amount
+.show-for-desktop {
+    @media(max-width:$desktop-breakpoint - 0.1rem) {
+        display: none;
+    }
+}

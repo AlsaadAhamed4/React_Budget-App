@@ -1,6 +1,6 @@
 .expenseslist-content {
-    background: #F9F7F9;
-    border    : 1px solid #DBDBDB;
+    background: $off-white;
+    border    : 1px solid $grey-border;
 }
 
 .expenseslist-content__title {
@@ -14,12 +14,12 @@
 }
 
 .expenselist-content__layout {
-    border: 1px solid #DBDBDB;
+    border: 1px solid $grey-border;
 }
 
 .expenselist-item {
     @extend .expenseslist-content__title;
-    border-bottom: 1px solid #DBDBDB;
+    border-bottom: 1px solid $grey-border;
     align-items  : center;
 }
 
