@@ -7,7 +7,7 @@ import filterExpenses from '../Selectors/FilterExpenses';
 
 //named export for testing because we should use un connected 
 export const ExpensesList = (props) => (
-    <div className='content-container'>
+    <div className='content-container expenseslist-margin'>
         <div className='expenseslist-content'>
             <div className='expenseslist-content__title'>
                 <p>Expenses</p>

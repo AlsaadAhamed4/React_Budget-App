@@ -1,3 +1,7 @@
+.expenseslist-margin {
+    margin-bottom: $l-size;
+}
+
 .expenseslist-content {
     background: $off-white;
     border    : 1px solid $grey-border;
@@ -54,8 +58,12 @@ div.expenselist-item__amount>p {
 }
 
 .expenselist-item__empty {
-    text-align : center;
-    font-weight: 500;
-    color      : $dark-blue-header;
-    font-size  : large;
+    text-align   : center;
+    font-weight  : 500;
+    color        : $dark-blue-header;
+    font-size    : large;
+    border-bottom: 1px solid $grey-border;
+    margin       : 0;
+    line-height  : 3;
+
 }
