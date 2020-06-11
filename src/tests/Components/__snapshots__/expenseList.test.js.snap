@@ -1,44 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render expense list with empty expense 1`] = `
-<div>
-  <p>
-    Expense List
-  </p>
-  <p>
-    No ExpenseS
-  </p>
+<div
+  className="content-container"
+>
+  <div
+    className="expenseslist-content"
+  >
+    <div
+      className="expenseslist-content__title"
+    >
+      <p>
+        Expenses
+      </p>
+      <p>
+        Amount
+      </p>
+    </div>
+  </div>
+  <div
+    className="expenselist-content__layout"
+  >
+    <p
+      className="expenselist-item__empty"
+    >
+      No expenses found, Please add one.
+    </p>
+  </div>
 </div>
 `;
 
 exports[`should render expenslist with expenses 1`] = `
-<div>
-  <p>
-    Expense List
-  </p>
-  <ExpensesListItem
-    amount={1000}
-    created={1000}
-    description="hola"
-    id="aasd"
-    key="aasd"
-    note="test"
-  />
-  <ExpensesListItem
-    amount={1100}
-    created={1100}
-    description="Hola Test 1"
-    id="wwww"
-    key="wwww"
-    note="test 1"
-  />
-  <ExpensesListItem
-    amount={1200}
-    created={1200}
-    description="Hola Test 2 "
-    id="eeee"
-    key="eeee"
-    note="test"
-  />
+<div
+  className="content-container"
+>
+  <div
+    className="expenseslist-content"
+  >
+    <div
+      className="expenseslist-content__title"
+    >
+      <p>
+        Expenses
+      </p>
+      <p>
+        Amount
+      </p>
+    </div>
+  </div>
+  <div
+    className="expenselist-content__layout"
+  >
+    <ExpensesListItem
+      amount={1000}
+      created={1000}
+      description="hola"
+      id="aasd"
+      key="aasd"
+      note="test"
+    />
+    <ExpensesListItem
+      amount={1100}
+      created={1100}
+      description="Hola Test 1"
+      id="wwww"
+      key="wwww"
+      note="test 1"
+    />
+    <ExpensesListItem
+      amount={1200}
+      created={1200}
+      description="Hola Test 2 "
+      id="eeee"
+      key="eeee"
+      note="test"
+    />
+  </div>
 </div>
 `;

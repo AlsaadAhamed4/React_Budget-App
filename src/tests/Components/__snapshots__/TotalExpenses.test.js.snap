@@ -1,27 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render totalExpenses 1`] = `
-<div>
-  <h1>
-    Viewing 
-    1
-     
-    expense
-     - Totaling 
-    $222.10
-  </h1>
+<div
+  className="totalexpense-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="totalexpense-content__title"
+    >
+      Viewing 
+      <span>
+        1
+      </span>
+       
+      expense
+       - Totaling 
+      <span>
+        $222.10
+      </span>
+    </h1>
+    <div
+      className="totalexpense-header__action"
+    >
+      <[object Object]
+        className="button"
+        to="/create"
+      >
+        Add Expense
+      </[object Object]>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`should render totalExpenses to be empty 1`] = `
-<div>
-  <h1>
-    Viewing 
-    0
-     
-    expenses
-     - Totaling 
-    $0.00
-  </h1>
+<div
+  className="totalexpense-header"
+>
+  <div
+    className="content-container"
+  >
+    <h1
+      className="totalexpense-content__title"
+    >
+      Viewing 
+      <span>
+        0
+      </span>
+       
+      expenses
+       - Totaling 
+      <span>
+        $0.00
+      </span>
+    </h1>
+    <div
+      className="totalexpense-header__action"
+    >
+      <[object Object]
+        className="button"
+        to="/create"
+      >
+        Add Expense
+      </[object Object]>
+    </div>
+  </div>
 </div>
 `;
