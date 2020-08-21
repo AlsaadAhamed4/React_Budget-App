@@ -1,6 +1,6 @@
 import { Router, Route, Switch } from 'react-router-dom'
 import React from 'react';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 import ExpenseHomePage from '../components/ExpenseHomePage';
 import AddExpensePage from '../components/AddExpense';
 import EditExpensePage from '../components//EditExpense';
